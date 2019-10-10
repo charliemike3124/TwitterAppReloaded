@@ -1,8 +1,5 @@
 from flask import Flask, render_template, request, json
-import tweepy, matplotlib.pyplot as plt, pandas as pd, numpy as np
-from io import BytesIO
-import base64
-
+import tweepy
 app = Flask(__name__)
 
 wsgi_app = app.wsgi_app
