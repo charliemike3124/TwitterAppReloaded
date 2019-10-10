@@ -17,12 +17,11 @@ api = tweepy.API(auth)
 
 
 def tweet_info(username):
-    return [{'User': username.name,
-              'Tweets: ': username.statuses_count, 
-              'Favorites: ': username.favourites_count,
-              'Following: ': username.friends_count,
-              'Followers: ': username.followers_count}
-           for t in tweets]
+    return {'User: ': username.name,
+              'Tweets: ': str(username.statuses_count), 
+              'Favorites: ': str(username.favourites_count),
+              'Following: ': str(username.friends_count),
+              'Followers: ': str(username.followers_count)}
 
 
 @app.route('/')
@@ -30,27 +29,12 @@ def index():
     search = request.args.get('q')	
     try:
         user = api.get_user(search)
+        print(user)
         return render_template('home.html', tweets=tweet_info(user))
-    except:
+    except Exception as e:
+        print(e)
         return render_template('home.html')
-        print("Error")
 
-
-
-
-def get_tweets(username):
-    tweets = api.user_timeline(screen_name=username)                                                                            
-    return [{'tweet': t.text,
-              'created_at': t.created_at, 
-              'username': username,
-              'headshot_url': t.user.profile_image_url}
-           for t in tweets]
-
-@app.route('/tweet-harvester/<string:username>')
-def tweets(username):
-  # 'tweets' is passed as a keyword-arg (**kwargs)
-  # **kwargs are bound to the 'tweets.html' Jinja Template context
-  return render_template("home.html", tweets=get_tweets(username))
 
 
 
