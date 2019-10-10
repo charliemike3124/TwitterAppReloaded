@@ -6,20 +6,39 @@
 </head>
 <body>
     <div class="container">
+        <br />
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md">
                 <div class="p-5">
-                    <h3> Enter a Twitter username </h3>
+                    <h3> Enter a Twitter user </h3>
                     <form class="form-inline" method="GET" action="{{ url_for('index') }}">
                         <input class="form-control" type="text" name="q">
-                        <button class="btn btn-primary" type="submit">search</button>
+                        <button class="btn btn-primary" type="submit">Buscar</button>
                     </form>
                 </div>
+            </div>
+            <div class="col-md">
+                <h3> User Info </h3>
                 {% for tweet in tweets %}
                 <div class="card mt-2">
                     <div class="card-body">
                         <div class="card-text">
                             {{ tweet + tweets[tweet]}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md">
+                <h3> Last 5 Posts </h3>
+                {% for post in posts %}
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <div class="card-text">
+                            {{ post.text}}
+                            <br />
+                            <p>Favorite count: {{post.favorite_count}}</p>
+                            <p>Retweets: {{post.retweet_count}}</p>
                         </div>
                     </div>
                 </div>
