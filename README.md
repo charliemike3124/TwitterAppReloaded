@@ -1,4 +1,4 @@
-#TwitterAppReloaded
+TwitterAppReloaded
 
 -Instalar y crear un nuevo projecto base usando la respectiva documentacion de flask: http://flask.palletsprojects.com/en/1.1.x/
 
